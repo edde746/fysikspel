@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 4756463822970668666}
   - component: {fileID: 4756463822970668669}
   - component: {fileID: 4756463822970668668}
+  - component: {fileID: 459107961514512747}
   m_Layer: 0
   m_Name: Monke
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,3 +122,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 3
+--- !u!114 &459107961514512747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4756463822970668671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c702add4ffbf0b4e94fda05603a7734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clicked: 0
+  shot: 0

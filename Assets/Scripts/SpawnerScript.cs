@@ -39,7 +39,7 @@ public class SpawnerScript : MonoBehaviour
         });
     }
 
-    bool shooting;
+    bool shooting = false;
     void Update()
     {
         // Check if we have a monkey to shoot
@@ -49,12 +49,17 @@ public class SpawnerScript : MonoBehaviour
         var currentMonkey = spawnedMonkeys[0];
         currentMonkey.transform.position = monkeyPosition;
 
-        if (!shooting && Input.GetMouseButtonDown(0))
+        // Inefficient fetching script each frame, add a cache?
+        var monkeyScript = currentMonkey.GetComponent<MonkeyScript>();
+        if (!shooting && monkeyScript.clicked)
         {
             shooting = true;
         }
         else if (shooting && Input.GetMouseButtonUp(0))
         {
+            shooting = false;
+            monkeyScript.shot = true;
+
             // Release the monkey
             // Remove current monkey from list
             spawnedMonkeys.RemoveAt(0);
@@ -63,7 +68,7 @@ public class SpawnerScript : MonoBehaviour
             var cursorWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var positionDelta = monkeyPosition - cursorWorldPosition;
             var force = Vector2.ClampMagnitude(new Vector2(positionDelta.x, positionDelta.y) * 5.0f, maxMagnitude);
-            
+
             // Unfreeze monkey and release him
             var rb = currentMonkey.GetComponent<Rigidbody2D>();
             rb.constraints = RigidbodyConstraints2D.None;
