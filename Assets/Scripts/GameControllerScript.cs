@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameControllerScript : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class GameControllerScript : MonoBehaviour
         if (enemies.TrueForAll(enemy => enemy == null))
         {
             Debug.Log("Won");
+            SceneManager.LoadScene("Level Select");
         }
     }
 }
