@@ -27,7 +27,14 @@ public class EnemyScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            Die();
+        }
+        else if (
+            collision.gameObject.CompareTag("Player") && // Only die when bigger impact velocity
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude >= rb.velocity.magnitude
+        )
         {
             Die();
         }
