@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonkeyScript : MonoBehaviour
+public class MonkeyScript : ShotBehaviour
 {
-    public bool clicked = false;
-    public bool shot = false;
     Rigidbody2D rb;
 
     void Start()
@@ -21,10 +19,5 @@ public class MonkeyScript : MonoBehaviour
             // Add some particles here or something
             Destroy(gameObject);
         }
-    }
-
-    private void OnMouseDown()
-    {
-        clicked = true;
     }
 }

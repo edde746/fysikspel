@@ -4,73 +4,73 @@ using UnityEngine;
 
 public class SpawnerScript : MonoBehaviour
 {
-    public float monkeyGap = 0.02f;
+    public float shotGap = 0.02f;
     public float maxMagnitude = 20.0f;
     public Vector3 slingshotOffset;
-    private Vector3 monkeyPosition;
-    public List<GameObject> queuedMonkeys;
+    private Vector3 shotPosition;
+    public List<GameObject> queuedShots;
     [HideInInspector]
-    public List<GameObject> spawnedMonkeys;
+    public List<GameObject> spawnedShots;
     void Start()
     {
         GetComponent<SpriteRenderer>().enabled = false;
-        monkeyPosition = transform.position + slingshotOffset;
+        shotPosition = transform.position + slingshotOffset;
 
         var spawnPosition = transform.position;
-        queuedMonkeys.ForEach(monkey =>
+        queuedShots.ForEach(shot =>
         {
-            var newMonkey = Instantiate(monkey, spawnPosition, Quaternion.identity);
+            var newShot = Instantiate(shot, spawnPosition, Quaternion.identity);
 
-            // Get width of Monkey for line up
+            // Get width of Shot for line up
             var width = 0.0f;
-            var collider = newMonkey.GetComponent<CircleCollider2D>();
+            var collider = newShot.GetComponent<CircleCollider2D>();
             if (collider)
             {
                 width = collider.radius;
             }
             else
             {
-                var boxCollider = newMonkey.GetComponent<BoxCollider2D>();
+                var boxCollider = newShot.GetComponent<BoxCollider2D>();
                 width = boxCollider.size.x;
             }
 
-            spawnPosition = new Vector3(spawnPosition.x - width - monkeyGap, spawnPosition.y, spawnPosition.z);
-            spawnedMonkeys.Add(newMonkey);
+            spawnPosition = new Vector3(spawnPosition.x - width - shotGap, spawnPosition.y, spawnPosition.z);
+            spawnedShots.Add(newShot);
         });
     }
 
     bool shooting = false;
     void Update()
     {
-        // Check if we have a monkey to shoot
-        if (spawnedMonkeys.Count == 0) return;
+        // Check if we have a shot to shoot
+        if (spawnedShots.Count == 0) return;
 
-        // Fetch monkey from queue and set to slingshot position
-        var currentMonkey = spawnedMonkeys[0];
-        currentMonkey.transform.position = monkeyPosition;
+        // Fetch shot from queue and set to slingshot position
+        var currentShot = spawnedShots[0];
+        currentShot.transform.position = shotPosition;
 
         // Inefficient fetching script each frame, add a cache?
-        var monkeyScript = currentMonkey.GetComponent<MonkeyScript>();
-        if (!shooting && monkeyScript.clicked)
+        var script = currentShot.GetComponent<ShotBehaviour>();
+        if (!shooting && script.clicked)
         {
             shooting = true;
         }
         else if (shooting && Input.GetMouseButtonUp(0))
         {
             shooting = false;
-            monkeyScript.shot = true;
+            script.shot = true;
 
-            // Release the monkey
-            // Remove current monkey from list
-            spawnedMonkeys.RemoveAt(0);
+            // Release the shot
+            // Remove current shot from list
+            spawnedShots.RemoveAt(0);
 
             // Calculate force from cursor
             var cursorWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var positionDelta = monkeyPosition - cursorWorldPosition;
+            var positionDelta = shotPosition - cursorWorldPosition;
             var force = Vector2.ClampMagnitude(new Vector2(positionDelta.x, positionDelta.y) * 5.0f, maxMagnitude);
 
-            // Unfreeze monkey and release him
-            var rb = currentMonkey.GetComponent<Rigidbody2D>();
+            // Unfreeze shot and release him
+            var rb = currentShot.GetComponent<Rigidbody2D>();
             rb.constraints = RigidbodyConstraints2D.None;
             rb.AddForce(force, ForceMode2D.Impulse);
         }

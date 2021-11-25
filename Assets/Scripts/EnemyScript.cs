@@ -13,7 +13,7 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(transform.rotation.z) >= 0.5f && rb.velocity.magnitude < 0.01f)
+        if (Mathf.Abs(transform.rotation.z) >= 0.5f && rb.velocity.magnitude < 0.01f || transform.position.y < -7.0f)
         {
             Die();
         }

@@ -700,6 +700,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5885935614890901674, guid: 3f3abe3a51dae48459f05b36b8711b61, type: 3}
+      propertyPath: queuedShots.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5885935614890901674, guid: 3f3abe3a51dae48459f05b36b8711b61, type: 3}
+      propertyPath: queuedShots.Array.data[0]
+      value: 
+      objectReference: {fileID: 4756463822970668671, guid: e188f5c3e3f70404cab9a736650d02cd, type: 3}
+    - target: {fileID: 5885935614890901674, guid: 3f3abe3a51dae48459f05b36b8711b61, type: 3}
+      propertyPath: queuedShots.Array.data[1]
+      value: 
+      objectReference: {fileID: 4756463822970668671, guid: e188f5c3e3f70404cab9a736650d02cd, type: 3}
     - target: {fileID: 5885935614890901675, guid: 3f3abe3a51dae48459f05b36b8711b61, type: 3}
       propertyPath: m_Name
       value: Spawner

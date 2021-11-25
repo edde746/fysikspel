@@ -1161,9 +1161,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5885935614890901674, guid: 3f3abe3a51dae48459f05b36b8711b61, type: 3}
+      propertyPath: queuedShots.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5885935614890901674, guid: 3f3abe3a51dae48459f05b36b8711b61, type: 3}
       propertyPath: queuedMonkeys.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5885935614890901674, guid: 3f3abe3a51dae48459f05b36b8711b61, type: 3}
+      propertyPath: queuedShots.Array.data[0]
+      value: 
+      objectReference: {fileID: 1139710068967372759, guid: 3461b9ffddd6bce42bdeb679cc8f59b4, type: 3}
+    - target: {fileID: 5885935614890901674, guid: 3f3abe3a51dae48459f05b36b8711b61, type: 3}
+      propertyPath: queuedShots.Array.data[1]
+      value: 
+      objectReference: {fileID: 1139710068967372759, guid: 3461b9ffddd6bce42bdeb679cc8f59b4, type: 3}
     - target: {fileID: 5885935614890901674, guid: 3f3abe3a51dae48459f05b36b8711b61, type: 3}
       propertyPath: queuedMonkeys.Array.data[1]
       value: 
