@@ -16,6 +16,8 @@ public class GameControllerScript : MonoBehaviour
         if (enemies.TrueForAll(enemy => enemy == null))
         {
             Debug.Log("Won");
+            Utility.Savefile.Completed.Add(SceneManager.GetActiveScene().name);
+            Utility.Savefile.SaveToFile();
             SceneManager.LoadScene("Level Select");
         }
     }

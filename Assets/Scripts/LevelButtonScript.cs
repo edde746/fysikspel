@@ -10,6 +10,9 @@ public class LevelButtonScript : MonoBehaviour
     {
         var textComponent = GetComponentInChildren<TMPro.TextMeshProUGUI>();
         textComponent.SetText($"{level}");
+        if (Utility.Savefile.Completed.Contains($"Level {level}"))
+            GetComponent<UnityEngine.UI.Image>().color = Color.green;
+
     }
     public void ChangeLevel()
     {
