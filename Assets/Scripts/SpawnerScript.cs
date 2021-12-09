@@ -71,12 +71,10 @@ public class SpawnerScript : MonoBehaviour
 
             // Vector2 last = shotPosition;
             List<Vector3> positions = new List<Vector3>();
-            for (float i = 0; i < 2; i += 0.1f)
+            for (float i = 0; i < 0.5f; i += 0.1f)
             {
                 var pos = positionInTime(i, shotPosition, force);
                 positions.Add(pos);
-                // Debug.DrawLine(new Vector3(last.x, last.y, transform.position.z), new Vector3(pos.x, pos.y, transform.position.z),Color.blue,1.0f,false);
-                // last = pos;
             }
             trajectoryRenderer.enabled = true;
             trajectoryRenderer.positionCount = positions.Count;
@@ -101,6 +99,7 @@ public class SpawnerScript : MonoBehaviour
     }
 
     // Credits: https://stackoverflow.com/questions/61125224/2d-projectile-trajectory-predictionunity-2d
+    // TODO: Account for object mass
     Vector2 positionInTime(float time, Vector2 initialPosition, Vector2 initialSpeed)
     {
         return initialPosition +

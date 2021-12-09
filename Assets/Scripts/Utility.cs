@@ -4,7 +4,6 @@ using UnityEngine;
 using System;
 using System.IO;
 
-
 [Serializable]
 class GameData
 {
@@ -15,6 +14,12 @@ class GameData
     public void SaveToFile()
     {
         File.WriteAllText(path, JsonUtility.ToJson(this));
+    }
+
+    public void MarkLevelCompleted(string level) {
+        if (Completed.Contains(level)) return;
+        Completed.Add(level);
+        SaveToFile();
     }
 
     public static GameData Load()
