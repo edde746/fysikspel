@@ -7,6 +7,8 @@ public class ParrotScript : ShotBehaviour
     public float lifetime = 2.0f;
     public float explosionRadius = 5.0f;
     public float explosionStrength = 14.0f;
+    public GameObject explosionParticle;
+
     void Start()
     {
 
@@ -18,9 +20,8 @@ public class ParrotScript : ShotBehaviour
 
         if (lifetime <= 0.0f)
         {
-            var particles = GetComponent<ParticleSystem>();
-            particles.Emit(30);
-            
+            Instantiate(explosionParticle, transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
+
             var explosionTargets = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
             foreach (var target in explosionTargets)
             {
