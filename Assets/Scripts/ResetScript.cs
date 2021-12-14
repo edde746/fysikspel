@@ -14,6 +14,6 @@ public class ResetScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) SceneManager.LoadScene("SampleScene");
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
