@@ -81,7 +81,7 @@ public class SpawnerScript : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 shooting = false;
-                script.shot = true;
+                currentShot.GetComponent<ShotBehaviour>().shot = true;
                 trajectoryRenderer.enabled = false;
 
                 // Release the shot
