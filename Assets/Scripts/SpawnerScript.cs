@@ -46,9 +46,6 @@ public class SpawnerScript : MonoBehaviour
     bool shooting = false;
     void Update()
     {
-        Debug.DrawLine(Vector3.zero, Vector3.down, Color.blue, 1.0f, false);
-
-
         // Check if we have a shot to shoot
         if (spawnedShots.Count == 0) return;
 
@@ -56,9 +53,8 @@ public class SpawnerScript : MonoBehaviour
         var currentShot = spawnedShots[0];
         currentShot.transform.position = shotPosition;
 
-        // Inefficient fetching script each frame, add a cache?
-        var script = currentShot.GetComponent<ShotBehaviour>();
-        if (!shooting && script.clicked)
+        // Check if mouse is pressed first to save performance of fetching component
+        if (!shooting && Input.GetMouseButtonUp(0) && currentShot.GetComponent<ShotBehaviour>().clicked)
         {
             shooting = true;
         }
@@ -69,13 +65,15 @@ public class SpawnerScript : MonoBehaviour
             var positionDelta = shotPosition - cursorWorldPosition;
             var force = Vector2.ClampMagnitude(new Vector2(positionDelta.x, positionDelta.y) * 5.0f, maxMagnitude);
 
-            // Vector2 last = shotPosition;
+            // Generate list of positions for trajectory line to follow
             List<Vector3> positions = new List<Vector3>();
             for (float i = 0; i < 0.5f; i += 0.1f)
             {
                 var pos = positionInTime(i, shotPosition, force);
                 positions.Add(pos);
             }
+
+            // Render line from positions previously generated
             trajectoryRenderer.enabled = true;
             trajectoryRenderer.positionCount = positions.Count;
             trajectoryRenderer.SetPositions(positions.ToArray());

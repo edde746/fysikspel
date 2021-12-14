@@ -15,7 +15,7 @@ public class GameControllerScript : MonoBehaviour
     {
         if (enemies.TrueForAll(enemy => enemy == null))
         {
-            Debug.Log("Won");
+            // No enemies exist, go back to level select screen
             Utility.Savefile.MarkLevelCompleted(SceneManager.GetActiveScene().name);
             SceneManager.LoadScene("Level Select");
         }
