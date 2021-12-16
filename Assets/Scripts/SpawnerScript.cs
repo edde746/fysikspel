@@ -54,7 +54,7 @@ public class SpawnerScript : MonoBehaviour
         currentShot.transform.position = shotPosition;
 
         // Check if mouse is pressed first to save performance of fetching component
-        if (!shooting && Input.GetMouseButtonUp(0) && currentShot.GetComponent<ShotBehaviour>().clicked)
+        if (!shooting && currentShot.GetComponent<ShotBehaviour>().clicked)
         {
             shooting = true;
         }

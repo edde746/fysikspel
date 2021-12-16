@@ -5,7 +5,7 @@ using UnityEngine;
 public class SnakeScript : ShotBehaviour
 {
     public float lifeTime = 2f;
-    public float _burstSpeedBoostPercent = 2f;
+    public float _burstSpeedBoostPercent = 1.5f;
     bool boosted = false;
     Rigidbody2D rb;
 
