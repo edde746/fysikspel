@@ -13,11 +13,7 @@ public class MonkeyScript : ShotBehaviour
 
     void Update()
     {
-        // Explode monkey if he is still;
         if (shot && rb.velocity.magnitude < 0.01f)
-        {
-            // Add some particles here or something
             Destroy(gameObject);
-        }
     }
 }

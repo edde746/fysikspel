@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class SnakeScript : ShotBehaviour
 {
-    public float lifeTime = 2f;
+    public float timeTilBoost = 1.0f;
     public float _burstSpeedBoostPercent = 1.5f;
     bool boosted = false;
     Rigidbody2D rb;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (shot) lifeTime -= Time.deltaTime;
+        if (shot) timeTilBoost -= Time.deltaTime;
 
-        if (lifeTime <= 0 && !boosted)
+        if (timeTilBoost <= 0 && !boosted)
         {
             rb.velocity *= _burstSpeedBoostPercent;
             boosted = true;
         }
+
+        if (shot && rb.velocity.magnitude < 0.01f)
+            Destroy(gameObject);
     }
 }
