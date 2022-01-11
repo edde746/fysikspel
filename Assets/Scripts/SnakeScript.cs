@@ -16,6 +16,7 @@ public class SnakeScript : ShotBehaviour
 
     void Update()
     {
+        ShotUpdate();
         if (shot) timeTilBoost -= Time.deltaTime;
 
         if (timeTilBoost <= 0 && !boosted)

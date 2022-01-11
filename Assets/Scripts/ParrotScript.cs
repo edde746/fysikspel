@@ -11,6 +11,7 @@ public class ParrotScript : ShotBehaviour
 
     void Update()
     {
+        ShotUpdate();
         if (shot) lifetime -= Time.deltaTime;
 
         if (lifetime <= 0.0f)

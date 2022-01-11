@@ -13,6 +13,7 @@ public class MonkeyScript : ShotBehaviour
 
     void Update()
     {
+        ShotUpdate();
         if (shot && rb.velocity.magnitude < 0.01f)
             Destroy(gameObject);
     }

@@ -12,4 +12,10 @@ public class ShotBehaviour : MonoBehaviour
     {
         clicked = true;
     }
+
+    public void ShotUpdate()
+    {
+        if (shot && transform.position.y < -6.0f)
+            Destroy(gameObject);
+    }
 }
